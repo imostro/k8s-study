@@ -1,0 +1,17 @@
+apiVersion: v1 # 表示操作这种资源的 API 版本号
+kind: Pod  # 资源类型
+metadata:
+  name: example-v1-pod
+  labels:  # 标签，不使用可以没有
+    env: demo
+    owner: gray
+spec:
+  containers: # 指定容器镜像
+    - image: mostro2019/k8s-study:latest
+      name: example-v1
+      ports:
+        - containerPort: 9000 # 服务端口
+      resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
