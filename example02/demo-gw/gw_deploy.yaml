@@ -1,0 +1,34 @@
+apiVersion: apps/v1 # 表示操作这种资源的 API 版本号
+kind: Deployment  # 资源类型
+metadata:
+  name: demo-gw
+  labels: # 标签，不使用可以没有
+    app: gw
+    owner: gray
+spec:
+  minReadySeconds: 15  # 确认Pod就绪的等待时间
+  replicas: 2  #指定副本数
+  selector:
+    matchLabels:
+      app: demo-gw
+  template:
+    metadata:
+      labels:
+        app: demo-gw
+    spec:
+      volumes: #定义卷轴
+        - name: config-vol
+          configMap:
+            name: gw-config
+      containers: # 指定容器镜像
+        - volumeMounts: # 挂载卷轴
+            - mountPath: /data/conf  # 挂载路径
+              name: config-vol       # 卷轴名字，对应volumes name
+          name: demo-gw
+          image: mostro2019/k8s-study:gw-v2
+          imagePullPolicy: Always    # Always IfNotAbsentPull
+          ports:
+            - containerPort: 9000 # 服务端口
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+status: { }

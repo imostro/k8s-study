@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: gw
+    owner: gray
+  name: demo-gw
+spec:
+  type: NodePort  # 向外暴露服务 除此之外还有ExternalName、LoadBalancer类型，但一般由云商提供
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 9000
+  selector:
+    app: demo-gw
+status:
+  loadBalancer: {}

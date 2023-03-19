@@ -1,0 +1,4 @@
+server:
+  env: "debug"
+  server_addr: ":9001"
+  greeting: "say hello to kubernetes."

@@ -1,0 +1,25 @@
+syntax = "proto3";
+package demo_api;
+option go_package = "demo_api/";
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
+message GreetingReq{
+  string name = 1;
+}
+
+message GreetingReply{
+  string greeting = 1;
+}
+
+service DemoApi {
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  rpc Greeting(GreetingReq) returns(GreetingReply){}
+}

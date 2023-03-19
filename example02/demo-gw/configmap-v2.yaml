@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gw-config
+data: # 定义配置，k=v形式，这里k则是配置名，value则是服务配置
+  app.conf: |
+    server:
+      env: "debug"
+      server_addr: ":9000"
+      greeting: "say hello to kubernetes."

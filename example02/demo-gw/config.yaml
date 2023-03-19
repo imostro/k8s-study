@@ -1,0 +1,3 @@
+server:
+  env: "debug"
+  server_addr: ":8080"
